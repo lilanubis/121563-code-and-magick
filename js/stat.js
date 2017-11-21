@@ -12,22 +12,26 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', 120, 60);
 
   var max = Math.max.apply(null, times);
+  var maxHeight = 150;
+  var scale = maxHeight / max;
+  var rectWidth = 40;
+  var step = 50;
+  var startingX = 160;
+  var startingY = 240;
+  var startingYnames = 260;
 
   for (var i = 0; i < names.length; i++) {
 
-    var rectHeight = (150 * times[i]) / max;
-    var rectWidth = 40;
-    var step = 50;
-    var startingX = 160;
-    var startingY = 240;
-    var startingYnames = 260;
-    var startingYtimes = rectHeight - 10;
+    var rectHeight = scale * -times[i];
+    var closingX = startingX + ((rectWidth + step) * i);
+    var closingY = startingY + rectHeight;
+    var startingYtimes = closingY - 10;
 
-    ctx.strokeStyle = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255,' + Math.random().toFixed(1) + ')';
+    ctx.strokeStyle = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255,' + (Math.random() * (1 - 0.2) + 0.2).toFixed(1) + ')';
 
     ctx.beginPath();
-    ctx.moveTo(startingX + ((rectWidth + step) * i), startingY);
-    ctx.lineTo(startingX + ((rectWidth + step) * i), rectHeight);
+    ctx.moveTo(closingX, startingY);
+    ctx.lineTo(closingX, closingY);
     ctx.lineWidth = rectWidth;
     ctx.stroke();
 
