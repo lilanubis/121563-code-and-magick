@@ -1,25 +1,12 @@
 'use strict';
 
-var RECT_WIDTH = 40;
-var STEP = 50;
-var STARTING_X = 160;
-var STARTING_Y = 240;
-var STARTING_Y_NAMES = 260;
-var MAX_HEIGHT = 150;
-
 window.renderStatistics = function (ctx, names, times) {
-
-  function drawStatisticsBoard() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-    ctx.fillRect(110, 20, 420, 270);
-    ctx.fillStyle = 'white';
-    ctx.strokeRect(100, 10, 420, 270);
-    ctx.fillRect(100, 10, 420, 270);
-    ctx.fillStyle = '#000';
-    ctx.font = '16px PT Mono';
-    ctx.fillText('Ура вы победили!', 120, 40);
-    ctx.fillText('Список результатов:', 120, 60);
-  }
+  var RECT_WIDTH = 40;
+  var STEP = 50;
+  var STARTING_X = 160;
+  var STARTING_Y = 240;
+  var STARTING_Y_NAMES = 260;
+  var MAX_HEIGHT = 150;
 
   drawStatisticsBoard();
 
@@ -43,5 +30,16 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = '#000';
     ctx.fillText(Math.round(times[i]), closingX - 20, startingYtimes);
     ctx.fillText(names[i], closingX - 20, STARTING_Y_NAMES);
+  }
+  function drawStatisticsBoard() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.fillRect(110, 20, 420, 270);
+    ctx.fillStyle = 'white';
+    ctx.strokeRect(100, 10, 420, 270);
+    ctx.fillRect(100, 10, 420, 270);
+    ctx.fillStyle = '#000';
+    ctx.font = '16px PT Mono';
+    ctx.fillText('Ура вы победили!', 120, 40);
+    ctx.fillText('Список результатов:', 120, 60);
   }
 };
