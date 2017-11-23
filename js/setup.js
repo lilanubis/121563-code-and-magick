@@ -13,26 +13,21 @@ var SIMILAR_LIST = document.querySelector('.setup-similar-list');
 var wizards = [];
 
 for (var i = 0; i < 4; i++) {
-  wizards[i] = [
+  wizards[i] =
     {
-      name: NAMES[i] + ' ' + SURNAMES[i]
-    },
-    {
-      coatColor: COAT_COLORS[Math.floor(Math.random() * COAT_COLORS.length)]
-    },
-    {
+      name: NAMES[i] + ' ' + SURNAMES[i],
+      coatColor: COAT_COLORS[Math.floor(Math.random() * COAT_COLORS.length)],
       eyesColor: EYES_COLORS[Math.floor(Math.random() * EYES_COLORS.length)]
-    }
-  ];
+    };
 }
 
 var renderWizards = function (wizard) {
 
   var wizardsTemplate = TEMPLATE.cloneNode(true);
 
-  wizardsTemplate.querySelector('.setup-similar-label').textContent = wizard[0].name;
-  wizardsTemplate.querySelector('.wizard-coat').style.fill = wizard[1].coatColor;
-  wizardsTemplate.querySelector('.wizard-eyes').style.fill = wizard[2].eyesColor;
+  wizardsTemplate.querySelector('.setup-similar-label').textContent = wizard.name;
+  wizardsTemplate.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  wizardsTemplate.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
   return wizardsTemplate;
 };
