@@ -1,29 +1,37 @@
 'use strict';
 
-document.querySelector('.setup').classList.remove('hidden');
-
-var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var FULL_NAMES = {
+  names: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
+  surnames: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг']
+};
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 var TEMPLATE = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var SIMILAR_LIST = document.querySelector('.setup-similar-list');
 
+
+document.querySelector('.setup').classList.remove('hidden');
+
 var wizards = [];
 
-var randomizer = function (value) {
+var getRandomValue = function (value) {
   return value[Math.floor(Math.random() * value.length)];
 };
 
-for (var i = 0; i < 4; i++) {
-  wizards[i] =
-    {
-      name: randomizer(NAMES) + ' ' + randomizer(SURNAMES),
-      coatColor: randomizer(COAT_COLORS),
-      eyesColor: randomizer(EYES_COLORS)
-    };
-}
+var createWizardsArray = function (numberOfWizards, names, coats, eyes) {
+  for (var i = 0; i < numberOfWizards; i++) {
+    wizards[i] =
+      {
+        name: getRandomValue(names.names) + ' ' + getRandomValue(names.surnames),
+        coatColor: getRandomValue(coats),
+        eyesColor: getRandomValue(eyes)
+      };
+  }
+  return wizards;
+};
+
+createWizardsArray(4, FULL_NAMES, COAT_COLORS, EYES_COLORS);
 
 var renderWizards = function (wizard) {
 
