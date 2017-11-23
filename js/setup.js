@@ -12,12 +12,16 @@ var SIMILAR_LIST = document.querySelector('.setup-similar-list');
 
 var wizards = [];
 
+var randomizer = function (value) {
+  return value[Math.floor(Math.random() * value.length)];
+};
+
 for (var i = 0; i < 4; i++) {
   wizards[i] =
     {
-      name: NAMES[i] + ' ' + SURNAMES[i],
-      coatColor: COAT_COLORS[Math.floor(Math.random() * COAT_COLORS.length)],
-      eyesColor: EYES_COLORS[Math.floor(Math.random() * EYES_COLORS.length)]
+      name: randomizer(NAMES) + ' ' + randomizer(SURNAMES),
+      coatColor: randomizer(COAT_COLORS),
+      eyesColor: randomizer(EYES_COLORS)
     };
 }
 
