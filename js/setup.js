@@ -16,8 +16,8 @@ var showElement = function (nameOfClass) {
 
 showElement('.setup');
 
-var getRandomValue = function (value) {
-  return value[Math.floor(Math.random() * value.length)];
+var getRandomValue = function (array) {
+  return array[Math.floor(Math.random() * array.length)];
 };
 
 var createWizardsArray = function (numberOfWizards, wizardsOptions) {
@@ -35,7 +35,7 @@ var createWizardsArray = function (numberOfWizards, wizardsOptions) {
 
 var wizards = createWizardsArray(NUMBER_OF_WIZARDS, WIZARDS_OPTS);
 
-var renderWizards = function (wizard) {
+var renderWizard = function (wizard) {
   var wizardsTemplate = TEMPLATE.cloneNode(true);
 
   wizardsTemplate.querySelector('.setup-similar-label').textContent = wizard.name;
@@ -48,7 +48,7 @@ var renderWizards = function (wizard) {
 var fragment = document.createDocumentFragment();
 
 for (var j = 0; j < wizards.length; j++) {
-  fragment.appendChild(renderWizards(wizards[j]));
+  fragment.appendChild(renderWizard(wizards[j]));
 }
 
 SIMILAR_LIST.appendChild(fragment);
